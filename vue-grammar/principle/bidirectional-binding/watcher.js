@@ -1,4 +1,4 @@
-import Dep from "./Dep";
+import Dep from "./dep";
 
 function Watcher(vm, exp, cb) {
     this.vm = vm;
@@ -14,7 +14,7 @@ Watcher.prototype = {
     run: function () {
         var value = this.vm.data[this.exp];
         var oldVal = this.value;
-        if(value !== oldVal) {
+        if (value !== oldVal) {
             this.value = value;
             this.cb.call(this.vm, value, oldVal);
         }

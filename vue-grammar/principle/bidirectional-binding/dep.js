@@ -7,7 +7,7 @@ Dep.prototype = {
         this.subs.push(sub);
     },
     notify: function () {
-        this.subs.forEach(function(sub) {
+        this.subs.forEach(sub => {
             sub.update();
         })
     }

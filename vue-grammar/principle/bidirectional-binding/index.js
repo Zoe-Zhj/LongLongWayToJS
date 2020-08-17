@@ -15,7 +15,7 @@ function MyCustomVue(data, el, exp) {
     var self = this;
     this.data = data;
 
-    Object.keys(data).forEach(function (key) {
+    Object.keys(data).forEach(key => {
         self.proxyKeys(key);
     });
 

@@ -1,4 +1,4 @@
-import Dep from "./Dep";
+import Dep from "./dep";
 
 function defineReactive(data, key, val) {
     //递归遍历嵌套的子属性
