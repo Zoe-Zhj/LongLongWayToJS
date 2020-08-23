@@ -1,9 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+        crossorigin="anonymous"
+    />
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<article class="description">
+    <h1>CSS布局示例</h1>
+    <p>本示例demo根据译文《从原型图到成品：步步深入 CSS 布局》编辑，原文链接如下。致敬技术好文！</p>
+    <a href="https://github.com/xitu/gold-miner/blob/master/TODO1/implement-a-design-with-css.md">https://github.com/xitu/gold-miner/blob/master/TODO1/implement-a-design-with-css.md</a>
+
+    <h3>布局要点</h3>
+    <section>
+        <ul>
+            <li>用行和列去构思：从左至右或从上至下</li>
+            <li>用矩形边框去划分页面</li>
+            <li>使用语义化的html元素</li>
+        </ul>
+    </section>
+
+    <h3>行内元素和块级元素</h3>
+    <section>
+        <ul>
+            <li>行内元素：span、button、img</li>
+            <li>块级元素：article、div、ul、li、p</li>
+        </ul>
+    </section>
+
+    <h3>边距</h3>
+    <section>
+        <ul>
+            <li>在元素右侧和下方设置 margin，不去碰左侧和上方的 margin。</li>
+            <li> CSS 在竖直方向上有 margin 坍塌现象。</li>
+        </ul>
+    </section>
+
+    <h3>示例</h3>
+    <section class="tweet">
+        <img
+            class="avatar"
+            src="http://www.gravatar.com/avatar"
+            alt="Name"
+        />
+        <div class="content">
+            <div class="author-meta">
+                <span class="handle">@handle</span>
+                <span class="name">Name</span>
+                <span class="time">3h ago</span>
+            </div>
+            <p>
+                Some insightful message.
+            </p>
+            <ul class="actions">
+                <li>
+                    <button>
+                        <i class="fas fa-reply"
+                           aria-hidden="true"></i>
+                        <span class="sr-only">Reply</span>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="fas fa-retweet"
+                           aria-hidden="true"
+                        ></i>
+                        <span class="sr-only">Retweet</span>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <i class="fas fa-heart"
+                           aria-hidden="true"
+                        ></i>
+                        <span class="sr-only">Like</span>
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <span aria-hidden="true">...</span>
+                        <span class="sr-only">More Actions</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</article>
+
 </body>
 </html>
+
+<style>
+    .description {
+        margin-bottom: 30px;
+        background-color: beige;
+    }
+
+    .tweet {
+        display: flex;
+        align-items: flex-start; /*让子项沿着容器顶部对齐，并保证各自高度*/
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .avatar {
+        margin-right: 10px;
+        width: 48px;
+        border-radius: 50%;
+    }
+
+    p, ul {
+        margin: 0;
+    }
+
+    .author-meta, p {
+        margin-bottom: 1em;
+    }
+
+    .name {
+        font-weight: 600;
+    }
+
+    .handle,
+    .time {
+        color: #657786;
+    }
+
+    .handle::after {
+        content: "\00b7";
+    }
+
+    .actions {
+        display: flex;
+        padding: 0;
+    }
+
+    .actions li {
+        list-style: none;
+        margin-right: 30px;
+    }
+
+    .actions button {
+        border: none;
+        color: #657786;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .actions button:hover {
+        color: #1da1f2;
+    }
+
+</style>
