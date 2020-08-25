@@ -27,3 +27,36 @@ function isHostMethod(object, property) {
         (!!(t === 'object' && object[property])) ||
         t === 'unknown'
 }
+
+/**
+ * 检测浏览器是否有缺陷（与[[Enumerable]]属性为false的圆形属性同名的函数，无法出现在for-in循环）
+ * @returns {boolean}
+ */
+function hasDontEnumQuirk() {
+    var o = {
+        toString: function () {}
+    };
+    for (var prop in o) {
+        if (prop === 'toString') {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * 检测浏览器是否有缺陷（枚举隐藏属性）
+ * @returns {boolean}
+ */
+function hasWnumShadowQuirk() {
+    var o = {
+        toString: function () {}
+    };
+    var count = 0;
+    for (var prop in o) {
+        if (prop === 'toString') {
+            count++;
+        }
+    }
+    return count > 1;
+}
