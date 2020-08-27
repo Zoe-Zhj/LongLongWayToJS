@@ -39,7 +39,9 @@ console.log('两个对象实例的bark方法是否相等>>>>>>>>>>>>>>>>>>>>', s
  * 原型对象的属性不属于实例自身
  * 修改原型对象，变动会立即体现在所有实例对象上
  */
-function f() {}
+function f() {
+}
+
 console.log('typeof f.prototype 结果>>>>>>>>>>>>>>>>>>>>', typeof f.prototype);
 
 function Mammal(name, species) {
@@ -74,4 +76,40 @@ var jerry = new Mammal('Jerry', 'mouse');
 console.log('两个对象实例的type属性是否相等>>>>>>>>>>>>>>>>>>>>', tom.type === jerry.type);
 console.log('两个对象实例的getName方法是否相等>>>>>>>>>>>>>>>>>>>>', tom.getName === jerry.getName);
 
+
+/**
+ * ********************对象的prototype对象 ********************
+ * 任何一个对象，都可以充当其他对象的原型，原型对象也是对象，所以它也有自己的原型，由此形成原型链
+ * 原型链最终上溯到Object.prototype
+ * Object.prototype的原型是null
+ */
+
+console.log('Object.prototype的原型是>>>>>>>>>>>>>>>>>>>>', Object.getPrototypeOf(Object.prototype));
+
+/**
+ * ********************prototype对象的constructor属性 ********************
+ */
+
+/**
+ * 定义一个对象构造函数
+ * @constructor
+ */
+function Person() {
+}
+
+console.log('P的原型有一个constructor属性>>>>>>>>>>>>>>>>>>>>', Person.prototype.constructor === P);
+
+
+/**
+ * 判断constructor是否被继承
+ */
+function Human() {
+}
+
+var p = new Human();
+
+console.log('Human对象的constructor属性其实是它原型对象Object的构造函数>>>>>>>>>>>>>>>>>>>>', Human.constructor === Object.constructor);
+console.log('p的constructor属性指向原型对象Human的构造函数>>>>>>>>>>>>>>>>>>>>', p.constructor === Human);
+console.log('p的constructor属性即Human对象的constructor属性>>>>>>>>>>>>>>>>>>>>', p.constructor === Human.prototype.constructor);
+console.log('p的constructor属性是继承而来，不属于自身属性>>>>>>>>>>>>>>>>>>>>', p.hasOwnProperty('constructor'));
 
