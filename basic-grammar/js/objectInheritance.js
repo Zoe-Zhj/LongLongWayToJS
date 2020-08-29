@@ -42,7 +42,7 @@ console.log('两个对象实例的bark方法是否相等>>>>>>>>>>>>>>>>>>>>', s
 function f() {
 }
 
-console.log('typeof f.prototype 结果>>>>>>>>>>>>>>>>>>>>', typeof f.prototype);
+console.log('typeof f.prototype 结果>>>>>>>>>>>>>>>>>>>>', typeof  f.prototype);
 
 function Mammal(name, species) {
     this.name = name;
@@ -113,3 +113,19 @@ console.log('p的constructor属性指向原型对象Human的构造函数>>>>>>>>
 console.log('p的constructor属性即Human对象的constructor属性>>>>>>>>>>>>>>>>>>>>', p.constructor === Human.prototype.constructor);
 console.log('p的constructor属性是继承而来，不属于自身属性>>>>>>>>>>>>>>>>>>>>', p.hasOwnProperty('constructor'));
 
+
+/**
+ * ********************对象的constructor方法 ********************
+ */
+function Person(name) {
+    this.name = name; 
+}
+
+Person.prototype.constructor === Person;
+
+Person.prototype = {
+    method: function () {}
+};
+
+Person.prototype.constructor === Person;
+Person.prototype.constructor === Object;
