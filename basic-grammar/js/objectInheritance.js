@@ -42,7 +42,7 @@ console.log('两个对象实例的bark方法是否相等>>>>>>>>>>>>>>>>>>>>', s
 function f() {
 }
 
-console.log('typeof f.prototype 结果>>>>>>>>>>>>>>>>>>>>', typeof  f.prototype);
+console.log('typeof f.prototype 结果>>>>>>>>>>>>>>>>>>>>', typeof f.prototype);
 
 function Mammal(name, species) {
     this.name = name;
@@ -118,14 +118,49 @@ console.log('p的constructor属性是继承而来，不属于自身属性>>>>>>>
  * ********************对象的constructor方法 ********************
  */
 function Person(name) {
-    this.name = name; 
+    this.name = name;
 }
 
-Person.prototype.constructor === Person;
+/**
+ * constructor属性定义在prototype对象上
+ */
+Person.constructor === Person.prototype.constructor; //false
+Person.prototype.constructor === Person; //true
 
+/**
+ * 实例对象继承原型链上的Person.prototype.constructor
+ * @type {Person}
+ */
+function Animal() {
+};
+var cat = new Animal();
+cat.constructor === Animal; //true
+cat.constructor === Animal.prototype.constructor; //true
+cat.hasOwnProperty('constructor'); //false
+
+/**
+ * 可以从一个实例对象新建另一个实例
+ * @type {Person}
+ */
+var tiger = new cat.constructor();
+tiger instanceof Animal;
+
+/**
+ * 可以从name属性得到构造函数名称
+ */
+tiger.constructor.name;
+
+/**
+ * 修改构造函数的原型对象
+ * @type {{method: Person.method}}
+ */
 Person.prototype = {
-    method: function () {}
+    method: function () {
+    }
 };
 
-Person.prototype.constructor === Person;
-Person.prototype.constructor === Object;
+/**
+ * 上面修改原型对象时，没有同步修改constructor属性，因此原函数的constructor不再指向Person
+ */
+Person.prototype.constructor === Person; //false
+Person.prototype.constructor === Object; //true
