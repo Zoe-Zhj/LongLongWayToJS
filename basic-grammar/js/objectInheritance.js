@@ -94,10 +94,10 @@ console.log('Object.prototype的原型是>>>>>>>>>>>>>>>>>>>>', Object.getProtot
  * 定义一个对象构造函数
  * @constructor
  */
-function Person() {
+function P() {
 }
 
-console.log('P的原型有一个constructor属性>>>>>>>>>>>>>>>>>>>>', Person.prototype.constructor === P);
+console.log('P的原型有一个constructor属性>>>>>>>>>>>>>>>>>>>>', P.prototype.constructor === P);
 
 
 /**
@@ -132,7 +132,7 @@ Person.prototype.constructor === Person; //true
  * @type {Person}
  */
 function Animal() {
-};
+}
 var cat = new Animal();
 cat.constructor === Animal; //true
 cat.constructor === Animal.prototype.constructor; //true
@@ -164,3 +164,44 @@ Person.prototype = {
  */
 Person.prototype.constructor === Person; //false
 Person.prototype.constructor === Object; //true
+
+
+/**
+ * ********************instanceof********************
+ * instanceof检查整个原型链，同一个实例对象可能会对多个构造函数都返回true
+ * 任意对象，除null，都是Object的实例
+ * instanceof检测右边构造函数的prototype属性是否在左边对象原型链上
+ */
+
+function Girl() {
+}
+
+var anna = new Girl();
+
+/**
+ * 同一个实例对象可能会对多个构造函数都返回true
+ */
+anna instanceof Girl; //true
+anna instanceof Object; //true
+
+/**
+ * 对null和undefined，instanceof总是返回false
+ */
+undefined instanceof Object; // false
+null instanceof Object; // false
+
+/**
+ * 对象原型链上只有null，instanceof判断失真
+ * @type {null}
+ */
+var obj = Object.create(null);
+typeof obj;
+Object.create(null) instanceof Object; // false
+
+/**
+ * instanceof可以用来判断对象值的类型
+ */
+var x = [];
+var y = {};
+x instanceof Array; // true
+y instanceof Object; // true
