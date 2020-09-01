@@ -133,6 +133,7 @@ Person.prototype.constructor === Person; //true
  */
 function Animal() {
 }
+
 var cat = new Animal();
 cat.constructor === Animal; //true
 cat.constructor === Animal.prototype.constructor; //true
@@ -205,3 +206,31 @@ var x = [];
 var y = {};
 x instanceof Array; // true
 y instanceof Object; // true
+
+
+/**
+ * ********************构造函数的继承********************
+ */
+function Super() {
+    this.id = 0;
+}
+
+Super.prototype.getId = function () {
+    console.log('当期实例id：', this.id);
+};
+
+Super.prototype.setId = function (id) {
+    this.id = id;
+};
+
+function Sub(signature) {
+    Super.call(this);
+    this.signature = signature;
+}
+
+Sub.prototype = Object.create(Super.prototype);
+Sub.prototype.constructor = Sub;
+
+var ins = new Sub('宅');
+ins instanceof Sub;
+ins instanceof Super;
