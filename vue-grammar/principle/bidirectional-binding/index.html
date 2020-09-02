@@ -117,18 +117,16 @@
      */
     function MyCustomVue(data, el, exp) {
         var self = this;
+        this.vm = this;
         this.data = data;
 
         Object.keys(data).forEach(key => {
             self.proxyKeys(key);
         });
 
-        observer(data);
+        observer(this.data);
 
-        el.innerHTML = this.data[exp];
-        new Watcher(this, exp, function (value) {
-            el.innerHTML = value;
-        });
+        new Compile(options, this.vm);
 
         return this;
     }

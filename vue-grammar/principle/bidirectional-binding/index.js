@@ -1,4 +1,3 @@
-import Watcher from "./watcher";
 import observer from "./observer";
 
 // function MyCustomVue(data, el, exp) {
@@ -11,20 +10,18 @@ import observer from "./observer";
 // }
 
 
-function MyCustomVue(data, el, exp) {
+function MyCustomVue(data) {
     var self = this;
+    this.vm = this;
     this.data = data;
 
     Object.keys(data).forEach(key => {
         self.proxyKeys(key);
     });
 
-    observer(data);
+    observer(this.data);
 
-    el.innerHTML = this.data[exp];
-    new Watcher(this, exp, function (value) {
-        el.innerHTML = value;
-    });
+    new Compile(options, this.vm);
 
     return this;
 }
