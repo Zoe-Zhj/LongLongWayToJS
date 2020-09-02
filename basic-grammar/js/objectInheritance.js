@@ -234,3 +234,49 @@ Sub.prototype.constructor = Sub;
 var ins = new Sub('宅');
 ins instanceof Sub;
 ins instanceof Super;
+
+/**
+ * ********************原型链继承********************
+ */
+function SuperType() {
+    this.colors = ['red', 'yellow', 'blue'];
+}
+
+SuperType.prototype.getSuperValue = function () {
+    return this.colors;
+};
+
+function SubType() {
+    this.subProperty = false;
+}
+
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubValue = function () {
+    return this.subProperty;
+};
+
+var instance1 = new SubType();
+console.log('instance1.colors>>>>>>>>>>>>>>>>>>>>', instance1.getSuperValue());
+
+instance1.colors.push('black');
+console.log('instance1.colors更新>>>>>>>>>>>>>>>>>>>>', instance1.colors);
+
+var instance2 = new SubType();
+console.log('instance2.colors>>>>>>>>>>>>>>>>>>>>', instance2.getSuperValue());
+
+/**
+ * ********************利用构造函数继承********************
+ */
+
+function OtherSubType() {
+    SuperType.call(this);
+}
+
+var instance3 = new OtherSubType();
+instance3.colors.push('white');
+console.log('instance3.colors>>>>>>>>>>>>>>>>>>>>', instance3.colors);
+
+var instance4 = new OtherSubType();
+console.log('instance4.colors>>>>>>>>>>>>>>>>>>>>', instance4.colors);
+
