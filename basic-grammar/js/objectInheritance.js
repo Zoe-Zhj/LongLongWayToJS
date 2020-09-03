@@ -280,3 +280,49 @@ console.log('instance3.colors>>>>>>>>>>>>>>>>>>>>', instance3.colors);
 var instance4 = new OtherSubType();
 console.log('instance4.colors>>>>>>>>>>>>>>>>>>>>', instance4.colors);
 
+/**
+ * ********************组合继承********************
+ */
+function MixSubType() {
+    SuperType.call(this);
+}
+
+MixSubType.prototype = new SuperType();
+MixSubType.prototype.constructor = MixSubType;
+
+
+var instance5 = new MixSubType();
+instance5.colors.push('pink');
+console.log('instance5.colors>>>>>>>>>>>>>>>>>>>>', instance5.colors);
+console.log('instance5.getSuperValue()>>>>>>>>>>>>>>>>>>>>', instance5.getSuperValue());
+
+var instance6 = new MixSubType();
+console.log('instance6.colors>>>>>>>>>>>>>>>>>>>>', instance6.colors);
+
+
+/**
+ * ********************多重继承********************
+ * 不允许一个对象同时继承多个对象
+ * 如下方式可以实现多重继承的效果
+ */
+function Super1() {
+    this.property1 = 'Hi';
+}
+
+function Super2() {
+    this.property2 = 'Hello';
+}
+
+function CuteSub() {
+    Super1.call(this);
+    Super2.call(this);
+}
+
+CuteSub.prototype = Object.create(Super1.prototype);
+Object.assign(CuteSub.prototype, Super2.prototype);
+
+CuteSub.prototype.constructor = CuteSub;
+
+var cuteInstance = new CuteSub();
+cuteInstance.property1;
+cuteInstance.property2;
