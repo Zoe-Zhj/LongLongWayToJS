@@ -326,3 +326,13 @@ CuteSub.prototype.constructor = CuteSub;
 var cuteInstance = new CuteSub();
 cuteInstance.property1;
 cuteInstance.property2;
+
+/**
+ * 模块 放大模式
+ * @type {{}}
+ */
+var module1 = (function (mod) {
+    mod.m3 = function () {
+    };
+    return mod;
+})(window.module1 || {});
