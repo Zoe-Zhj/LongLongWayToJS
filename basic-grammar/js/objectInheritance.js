@@ -328,7 +328,7 @@ cuteInstance.property1;
 cuteInstance.property2;
 
 /**
- * 模块 放大模式
+ * 模块  放大模式
  * @type {{}}
  */
 var module1 = (function (mod) {
@@ -336,3 +336,36 @@ var module1 = (function (mod) {
     };
     return mod;
 })(window.module1 || {});
+
+/**
+ * getPrototypeOf方法，返回参数的原型对象
+ */
+function S() {}
+var s = new S();
+Object.getPrototypeOf(s) === S.prototype;
+
+Object.getPrototypeOf({}) === Object.prototype;
+Object.getPrototypeOf(Object.prototype) === null;
+Object.getPrototypeOf(S) === Function.prototype;
+
+/**
+ * setPrototypeOf方法，为参数对象设置原型
+ */
+var a = {};
+var b = {
+    c: 'd'
+};
+
+Object.setPrototypeOf(a, b);
+Object.getPrototypeOf(a) === b;
+a.c;
+
+/**
+ * 等价new命令
+ * 将空对象的原型设置为构造函数的prototype属性
+ * 将该空对象绑定到构造函数内部this对象
+ */
+var ss = Object.setPrototypeOf({}, S.prototype);
+S.call(ss);
+
+
