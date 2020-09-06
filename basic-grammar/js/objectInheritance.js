@@ -368,4 +368,24 @@ a.c;
 var ss = Object.setPrototypeOf({}, S.prototype);
 S.call(ss);
 
+/**
+ * create方法，从一个对象生成另一个对象
+ */
+var SS = Object.create(s);
+var SSS = Object.create(s, {
+    property1: {
+        value: 'color',
+        enumerable: true,
+        configurable: true,
+        writable: true
+    },
+    property2: {
+        value: 'size',
+        enumerable: true,
+        configurable: true,
+        writable: true
+    }
+});
 
+SS.constructor === S;
+SS instanceof S;
