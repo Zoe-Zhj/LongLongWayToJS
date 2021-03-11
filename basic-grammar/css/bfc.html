@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC示例</title>
+</head>
+<body>
+<div>
+    <h1>BFC可以解决高度坍塌问题</h1>
+    <div class="container">
+        <div class="individual-block red"></div>
+        <div class="individual-block"></div>
+    </div>
+    <div class="container container--bfc">
+<!--    <div class="container">-->
+        <div class="individual-block red div--bfc"></div>
+        <div class="individual-block"></div>
+        <div class="individual-block red"></div>
+    </div>
+</div>
+</body>
+</html>
+<style>
+    .container {
+        margin: 20px;
+        border: 1px dashed black;
+    }
+
+    .individual-block {
+        width: 500px;
+        height: 100px;
+        text-align: center;
+        margin: 20px 0 20px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+
+    .red {
+        background-color: rosybrown;
+    }
+
+    .container--bfc {
+        overflow: hidden;
+    }
+
+    .div--bfc {
+        display: inline-block;
+    }
+</style>
