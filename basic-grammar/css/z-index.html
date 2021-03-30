@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>z-index示例</title>
+</head>
+<body>
+<div class="first-example">
+    <h3> 当元素之间重叠的时候， z-index 较大的元素会覆盖较小的元素在上层进行显示。</h3>
+    <section id="first-section" class="container">
+        <div class="background-block" style="z-index: auto;">打底</div>
+        <div class="block blue position1">z-index: 6</div>
+        <div class="block blue position2">z-index: 4</div>
+        <div class="block blue position3">z-index: 2</div>
+        <div class="block red  position4">z-index: auto</div>
+        <div class="block red  position5">z-index: auto</div>
+        <div class="block red  position6">z-index: auto</div>
+    </section>
+</div>
+
+<div class="second-example">
+    <h3>z-index为auto，盒子不会创建一个新的本地堆叠上下文。在当前堆叠上下文中生成的盒子的堆叠层级和父级盒子相同</h3>
+    <h3>z-index为整型数字，表示生成的盒子在当前堆叠上下文中的堆叠层级。此盒子也会创建一个堆叠层级为 0 的本地堆叠上下文。这意味着后代（元素）的 z-indexes 不与此元素的外部元素的 z-indexes 进行对比。</h3>
+    <section id="second-section" class="container">
+        <div class="background-block" style="z-index: auto;">打底</div>
+        <div style="position: relative; z-index: 0; top: 30px; left: 30px">
+            <div class="block--horizon blue position1">z-index: 6</div>
+            <div class="block--horizon blue position2">z-index: 4</div>
+            <div class="block--horizon blue position3">z-index: 2</div>
+        </div>
+        <div style="position: relative; top: 30px; left: 30px">
+            <div class="block--vertical red  position4--vertical">z-index: 7</div>
+            <div class="block--vertical red  position5--vertical">z-index: 5</div>
+            <div class="block--vertical red  position6--vertical">z-index: 3</div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<style>
+    body {
+        font: 16px/1.5 sans-serif;
+    }
+    section {
+        text-align: center;
+    }
+    .first-example {
+        height: 350px;
+    }
+    .container {
+        display: inline-block;
+        vertical-align: top;
+        width: 250px;
+        position: relative;
+    }
+    .background-block {
+        top: 15px;
+        left: 15px;
+        width: 180px;
+        height: 230px;
+        position: absolute;
+        line-height: 215px;
+        font-family: monospace;
+        background-color: #fcfbe5;
+        border: solid 5px #e3e0a1;
+        z-index: auto;
+    }
+    .block {
+        width: 150px;
+        height: 50px;
+        position: absolute;
+        font-family: monospace;
+    }
+    .block--horizon {
+        width: 300px;
+        height: 50px;
+        position: absolute;
+        font-family: monospace;
+    }
+    .block--vertical {
+        writing-mode: vertical-lr;
+        line-height: 55px;
+        width: 50px;
+        height: 200px;
+        position: absolute;
+        font-family: monospace;
+    }
+    .blue {
+        background-color: #e5e8fc;
+        border: solid 5px #112382;
+        line-height: 55px;
+    }
+    .red {
+        background-color: #fce5e7;
+        border: solid 5px #e3a1a7;
+    }
+    .position1 {
+        top: 0;
+        left: 0;
+        z-index: 6;
+    }
+    .position2 {
+        top: 30px;
+        left: 30px;
+        z-index: 4;
+    }
+    .position3 {
+        top: 60px;
+        left: 60px;
+        z-index: 2;
+    }
+    .position4 {
+        top: 150px;
+        left: 0;
+        z-index: auto;
+    }
+    .position5 {
+        top: 180px;
+        left: 30px;
+        z-index: auto;
+    }
+    .position6 {
+        top: 210px;
+        left: 60px;
+        z-index: auto;
+    }
+    .position4--vertical {
+        top: 0;
+        left: 0;
+        z-index: 7;
+    }
+    .position5--vertical {
+        top: 0;
+        left: 40px;
+        z-index: 5;
+    }
+    .position6--vertical {
+        top: 0;
+        left: 80px;
+        z-index: 3;
+    }
+</style>
