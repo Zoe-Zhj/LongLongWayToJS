@@ -5,8 +5,21 @@
     <title>z-index示例</title>
 </head>
 <body>
+<div style="height: 350px">
+    <li>层叠顺序</li>
+    <section class="order-area">
+        <div class="box minus-box">z-index: -1</div>
+        <div class="box block-box">block</div>
+        <div class="box float-box">float
+            <div class="box inlayer">inline(inlayer)</div>
+        </div>
+        <div class="box inline-box">inline</div>
+        <div class="box zero-box">z-index: 0</div>
+        <div class="box positive-box">z-index: 1</div>
+    </section>
+</div>
 <div class="first-example">
-    <h3> 当元素之间重叠的时候， z-index 较大的元素会覆盖较小的元素在上层进行显示。</h3>
+    <li> 当元素之间重叠的时候， z-index 较大的元素会覆盖较小的元素在上层进行显示。</li>
     <section id="first-section" class="container">
         <div class="background-block" style="z-index: auto;">打底</div>
         <div class="block blue position1">z-index: 6</div>
@@ -19,8 +32,8 @@
 </div>
 
 <div class="second-example">
-    <h3>z-index为auto，盒子不会创建一个新的本地堆叠上下文。在当前堆叠上下文中生成的盒子的堆叠层级和父级盒子相同</h3>
-    <h3>z-index为整型数字，表示生成的盒子在当前堆叠上下文中的堆叠层级。此盒子也会创建一个堆叠层级为 0 的本地堆叠上下文。这意味着后代（元素）的 z-indexes 不与此元素的外部元素的 z-indexes 进行对比。</h3>
+    <li>z-index为auto，盒子不会创建一个新的本地堆叠上下文。在当前堆叠上下文中生成的盒子的堆叠层级和父级盒子相同</li>
+    <li>z-index为整型数字，表示生成的盒子在当前堆叠上下文中的堆叠层级。此盒子也会创建一个堆叠层级为 0 的本地堆叠上下文。这意味着后代（元素）的 z-indexes 不与此元素的外部元素的 z-indexes 进行对比。</li>
     <section id="second-section" class="container">
         <div class="background-block" style="z-index: auto;">打底</div>
         <div style="position: relative; z-index: 0; top: 30px; left: 30px">
@@ -44,6 +57,70 @@
     section {
         text-align: center;
     }
+    .order-area {
+        position: absolute;
+        z-index: 0;
+        width: 310px;
+        height: 300px;
+        background: #b677c3;
+    }
+    .box {
+        width: 150px;
+        height: 50px;
+        border: solid 2px #ffffff;
+    }
+
+    .order-area > .minus-box {
+        top: 20px;
+        left: 20px;
+        position: relative;
+        z-index: -1;
+        background: #8a77c1;
+    }
+
+    .order-area > .block-box {
+        margin-left: 40px;
+        background: #4f73c5;
+    }
+
+    .order-area > .float-box {
+        margin-left: 60px;
+        margin-top: -20px;
+        float: left;
+        background: #4fb4c4;
+    }
+
+    .order-area > .float-box > .inlayer {
+        margin-left: 18px;
+        margin-top: 8px;
+        display: inline-block;
+        background: #4fc489;
+    }
+
+    .order-area > .inline-box {
+        margin-left: 56px;
+        margin-top: 16px;
+        display: inline-block;
+        background: #87c44f;
+    }
+
+    .order-area > .zero-box {
+        top: -20px;
+        left: 120px;
+        position: relative;
+        z-index: 0;
+        background: #dbac4e;
+    }
+
+    .order-area > .positive-box {
+        top: -40px;
+        left: 140px;
+        position: relative;
+        z-index: 1;
+        background: #d83855;
+    }
+
+
     .first-example {
         height: 350px;
     }
